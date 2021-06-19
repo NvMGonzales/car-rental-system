@@ -1,0 +1,31 @@
+{{#each cars}}
+<a href="/displayCar/{{_id}}">
+<div class="d-flex">
+  <input type="hidden" id="carID" value="{{_id}}">
+  <div class="flex-shrink-0">
+    <img src="{{owner.image}}" class="mr-3" width="64px" height="64px">
+  </div>
+  <div class="flex-grow-1 ms-3">
+    <h5 class="mt-0">{{make}} {{model}} {{year}}</h5>
+    <div class="row">
+          {{#each image}}
+          <div class="col-sm">
+              <img src="{{imageUrl}}" class="img-fluid" width="300px" height="auto">
+          </div>
+          {{else}}
+          <img src="" alt="">
+          {{/each}}
+    </div>
+    <p>${{monthlyprice}} per month</p>
+    <p>${{weeklyprice}} per week</p>
+    <small>{{location}}</small>
+    <small>{{date}}</small>
+    
+    
+  </div>
+</div>
+</a>
+<hr>
+{{else}}
+<p>No Car Found</p>
+{{/each}}

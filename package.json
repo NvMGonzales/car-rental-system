@@ -9,8 +9,25 @@
   "author": "Chadd Joshua Ortiaga",
   "license": "ISC",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "aws-sdk": "^2.928.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.2"
+    "express-handlebars": "^5.3.2",
+    "express-session": "^1.17.2",
+    "formidable": "^1.2.2",
+    "http": "0.0.1-security",
+    "mongoose": "^5.12.13",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-local": "^1.0.0",
+    "socket.io": "^4.1.2",
+    "stripe": "^8.156.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Map</title>
+
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+    <script>
+        $(document).ready( // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        var PH = { lat: 14.1407, lng: -121.4692 };
+        // The map, centered at Uluru
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: PH,
+        });
+        // load socket
+        var socket = io();
+         // allcars event
+      socket.on('allcars',function(cars) {
+        console.log('AllCars',cars);
+        for(var i = 0; i < cars.cars.length;i++){
+          console.log(cars.cars[i]);
+           // The marker, positioned at Uluru
+            function addMarker(){
+               var marker = new google.maps.Marker({
+          position: {lat:cars.cars[i].coords.lat,
+          lng: cars.cars[i].coords.lng
+          },
+          map: map
+        });
+        // info window for each car
+        var infoWindow = new google.maps.InfoWindow({
+          content: `<a href="/displayCar/${cars.cars[i]._id}">
+          <h3><b>Car Brand: </b> ${cars.cars[i].make}</h3>
+          <p><b>Model: </b>${cars.cars[i].model}, <b>Year: </b>${cars.cars[i].year}</p>
+          <p>$${cars.cars[i].monthlyprice} per month</p>
+          <p>$${cars.cars[i].weeklyprice} per week</p>
+          <img src="${cars.cars[i].picture}" width = "70px;">
+          </a>`
+        });
+        marker.addListener(`click`,function(){
+          infoWindow.open(map,marker);
+        })
+            }
+            addMarker();
+        }
+      });
+       
+      });
+    </script>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8ItxwzKXrxgHM5cjW0wgAEIltzkpZ-Pc&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>
