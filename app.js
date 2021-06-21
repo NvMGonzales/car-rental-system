@@ -28,7 +28,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 // helpers 
-const {requireLogin,ensureGuest} = ('./helpers/authHelper');
+const {requireLogin,ensureGuest} = require('./helpers/authHelper');
 const {upload} = require('./helpers/aws');
 // load passports dito
 require('./passport/localauth');
